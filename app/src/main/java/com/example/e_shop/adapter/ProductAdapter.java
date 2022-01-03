@@ -1,4 +1,4 @@
-package com.example.e_shop;
+package com.example.e_shop.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.e_shop.model.Product;
+import com.example.e_shop.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +21,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private Context context;
     private LayoutInflater layoutInflater;
     List<Product> productList = new ArrayList<>();
+    private ItemClickListener productClickListener;
 
 
-    public ProductAdapter(Context context, List<Product> products) {
+    public ProductAdapter(Context context, List<Product> products, ItemClickListener itemClickListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.productList = products;
+        this.productClickListener = itemClickListener;
     }
 
     @NonNull
@@ -39,6 +43,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Glide.with(context).
                 load(productList.get(position).getProductImage()).
                 into(holder.productImageView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                productClickListener.onProductItemClick(productList.get(position));
+            }
+        });
         holder.productTitleView.setText(productList.get(position).getProductTitle());
         holder.productPriceView.setText(productList.get(position).getProductPrice());
     }
@@ -58,5 +68,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productTitleView = itemView.findViewById(R.id.product_title);
             productPriceView = itemView.findViewById(R.id.product_price);
         }
+    }
+
+    public interface ItemClickListener{
+        void onProductItemClick(Product product);
     }
 }

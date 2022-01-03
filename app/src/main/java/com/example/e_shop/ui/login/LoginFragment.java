@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.e_shop.HomeActivity;
+import com.example.e_shop.view.HomeActivity;
 import com.example.e_shop.R;
 import com.example.e_shop.SignUp;
 import com.google.android.material.textfield.TextInputEditText;

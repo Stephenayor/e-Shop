@@ -1,4 +1,7 @@
-package com.example.e_shop;
+package com.example.e_shop.viewmodel;
+
+import com.example.e_shop.model.Product;
+import com.example.e_shop.ProductRepository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
