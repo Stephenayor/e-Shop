@@ -24,7 +24,6 @@ public abstract class CartDatabase extends RoomDatabase {
                 eventsInstance = Room.databaseBuilder(context.getApplicationContext(),
                         CartDatabase.class,CartDatabase.DATABASE_NAME)
                         //Queries are been done in a separate thread to avoid locking the UI
-                        .allowMainThreadQueries()
                         .build();
             }
         }

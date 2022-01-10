@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.e_shop.CartDatabase;
 import com.example.e_shop.CartFragment;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.R;
@@ -23,6 +22,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Product product;
     private Button addToCartButton;
     private Fragment cartFragment;
+    public cartButtonClickListener cartButtonClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public interface cartButtonClickListener{
+        void onClickInProductDetailsActivity(View view);
     }
 
 }

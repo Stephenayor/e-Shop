@@ -1,5 +1,6 @@
 package com.example.e_shop.viewmodel;
 
+import com.example.e_shop.CartDatabase;
 import com.example.e_shop.model.CartItem;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.repository.CartRepository;
@@ -15,7 +16,7 @@ public class ProductViewModel extends ViewModel {
     private ProductRepository productRepository;
     private MutableLiveData<Product> mutableLiveData;
     CartRepository cartRepository = new CartRepository();
-    private static final String TAG = "cart";
+
 
     public ProductViewModel() {
         productRepository = new ProductRepository();
@@ -32,11 +33,11 @@ public class ProductViewModel extends ViewModel {
         return cartRepository.getCart();
     }
 
-    public List<CartItem> addProductToCart(Product product){
-        return cartRepository.addItemToCart(product);
+    public void addProductToCart(CartItem cartItem){
+        cartRepository.addProductToCart(cartItem);
     }
 
     public LiveData<List<CartItem>> getCartItem(CartItem cartItem){
-        return cartRepository.addCartItem(cartItem);
+        return cartRepository.returnCartItemList(cartItem);
     }
 }

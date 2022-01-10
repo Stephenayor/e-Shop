@@ -2,6 +2,8 @@ package com.example.e_shop;
 
 import com.example.e_shop.model.CartItem;
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -15,7 +17,7 @@ public interface CartDao {
     void addToCart(CartItem cart);
 
     @Query("SELECT * FROM MyCart")
-    List<CartItem> getCartList();
+    LiveData<List<CartItem>> getCartList();
 
     @Delete
     void deleteProduct(CartItem cartItem);
