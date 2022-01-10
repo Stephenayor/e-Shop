@@ -1,4 +1,4 @@
-package com.example.e_shop;
+package com.example.e_shop.repository;
 
 import android.util.Log;
 

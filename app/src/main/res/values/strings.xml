@@ -28,4 +28,12 @@
     <string name="sign_in_text">Sign In</string>
     <string name="title">Title</string>
     <string name="product_price">Product_price</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string-array name="quantity_string_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5(Max)</item>
+    </string-array>
 </resources>

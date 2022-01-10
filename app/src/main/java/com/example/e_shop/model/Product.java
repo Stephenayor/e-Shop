@@ -5,11 +5,18 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+
+@Entity
 public class Product implements Parcelable {
+    @NonNull
     @SerializedName("image")
     private String productImage;
+    @NonNull
     @SerializedName("name")
     private String productTitle;
+    @NonNull
     @SerializedName("price")
     private String productPrice;
 
