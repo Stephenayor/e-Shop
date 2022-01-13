@@ -6,8 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/productImageView"
@@ -26,49 +25,35 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/quanity_textView"
+        app:layout_constraintBottom_toTopOf="@+id/quantity_textView"
         app:layout_constraintStart_toEndOf="@+id/productImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/quanity_textView"
+        android:id="@+id/quantity_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity"
+        android:text="@string/quantity"
+        android:layout_marginEnd="20dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/productTitleTextView"
         app:layout_constraintTop_toBottomOf="@+id/productTitleTextView" />
 
-    <Spinner
-        android:id="@+id/quantity_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/quanity_textView"
-        app:layout_constraintStart_toEndOf="@+id/quanity_textView"
-        app:layout_constraintTop_toTopOf="@+id/quanity_textView"
-        android:entries="@array/quantity_string_array"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        />
-
-
-    <ImageButton
-        android:id="@+id/deleteProductButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/quantity_spinner"
-        app:layout_constraintStart_toEndOf="@+id/quantity_spinner"
-        app:layout_constraintTop_toTopOf="@+id/quantity_spinner"
-        app:srcCompat="@drawable/ic_baseline_delete_24" />
+        <TextView
+            android:id="@+id/cartQuantity_text_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:padding="16dp"
+            app:layout_constraintLeft_toRightOf="@+id/quantity_textView"
+            app:layout_constraintBaseline_toBaselineOf="@id/quantity_textView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="15dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
     <TextView
-        android:id="@+id/product_totalPrice_textView"
+        android:id="@+id/cart_item_price_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

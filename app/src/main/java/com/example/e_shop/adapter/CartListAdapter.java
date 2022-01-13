@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -22,11 +23,13 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     private Context context;
     private LayoutInflater layoutInflater;
     private List<CartItem> cartItemList = new ArrayList<>();
+    private CartInterface cartInterface;
 
-    public CartListAdapter(Context context, List<CartItem> cartItemList) {
+    public CartListAdapter(Context context, List<CartItem> cartItemList, CartInterface cartInterface) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.cartItemList = cartItemList;
+        this.cartInterface = cartInterface;
     }
 
     @NonNull
@@ -42,7 +45,33 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
                 load(cartItemList.get(position).getProduct().getProductImage()).
                 into(holder.productCartImageView);
         holder.productCartTitleTextView.setText(cartItemList.get(position).getProduct().getProductTitle());
+        holder.cartQuantityTextView.setText(Integer.toString(cartItemList.get(position).getQuantity()));
+        int cartQuantity = cartItemList.get(position).getQuantity();
+        String testCart = cartItemList.get(position).getProduct().getProductPrice();
+                String str = testCart.substring(1);
+                int cartProductPrice = Integer.parseInt(str);
+                holder.productCartPriceTextView.setText(String.valueOf( "$" + cartProductPrice * cartQuantity));
 
+//        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                int quantity = position;
+////                if (quantity == cartItemList.get(position).getQuantity()) {
+////                    return;
+////                }
+//
+//                String testCart = cartItemList.get(position).getProduct().getProductPrice().toString();
+//                String str = testCart.substring(1);
+//                int cartProductPrice = Integer.parseInt(str);
+//                holder.productCartPriceTextView.setText(String.valueOf(cartProductPrice));
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -50,21 +79,30 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         return cartItemList.size();
     }
 
+    public List<CartItem> getCartItemList(){
+        return cartItemList;
+    }
+
     public class CartListViewHolder extends RecyclerView.ViewHolder {
         private ImageView productCartImageView;
         private TextView productCartTitleTextView;
+        private TextView productCartPriceTextView;
         private TextView productCartQuantityTextView;
+        private TextView cartQuantityTextView;
         private Spinner spinner;
-        private Button deleteButton;
-        private TextView totalPriceTextView;
+
         public CartListViewHolder(@NonNull View itemView) {
             super(itemView);
             productCartImageView = itemView.findViewById(R.id.productImageView);
             productCartTitleTextView = itemView.findViewById(R.id.productTitleTextView);
-            productCartQuantityTextView = itemView.findViewById(R.id.quanity_textView);
+            productCartQuantityTextView = itemView.findViewById(R.id.quantity_textView);
             spinner = itemView.findViewById(R.id.quantity_spinner);
-
-            totalPriceTextView = itemView.findViewById(R.id.product_totalPrice_textView);
+            productCartPriceTextView = itemView.findViewById(R.id.cart_item_price_textView);
+            cartQuantityTextView = itemView.findViewById(R.id.cartQuantity_text_View);
         }
+    }
+
+    public interface CartInterface {
+        void changeQuantity(CartItem cartItem, int quantity);
     }
 }

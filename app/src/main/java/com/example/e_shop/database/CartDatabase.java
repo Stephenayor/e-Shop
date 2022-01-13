@@ -1,6 +1,7 @@
-package com.example.e_shop;
+package com.example.e_shop.database;
 
 import android.content.Context;
+
 import com.example.e_shop.model.CartItem;
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -23,7 +24,9 @@ public abstract class CartDatabase extends RoomDatabase {
             synchronized (LOCK){
                 eventsInstance = Room.databaseBuilder(context.getApplicationContext(),
                         CartDatabase.class,CartDatabase.DATABASE_NAME)
+                        .fallbackToDestructiveMigration()
                         //Queries are been done in a separate thread to avoid locking the UI
+                        .allowMainThreadQueries()
                         .build();
             }
         }

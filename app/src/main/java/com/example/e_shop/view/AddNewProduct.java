@@ -1,7 +1,9 @@
-package com.example.e_shop;
+package com.example.e_shop.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.e_shop.R;
 
 
 public class AddNewProduct extends AppCompatActivity {

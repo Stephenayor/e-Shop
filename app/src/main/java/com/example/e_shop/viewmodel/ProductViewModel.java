@@ -1,6 +1,5 @@
 package com.example.e_shop.viewmodel;
 
-import com.example.e_shop.CartDatabase;
 import com.example.e_shop.model.CartItem;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.repository.CartRepository;
@@ -39,5 +38,13 @@ public class ProductViewModel extends ViewModel {
 
     public LiveData<List<CartItem>> getCartItem(CartItem cartItem){
         return cartRepository.returnCartItemList(cartItem);
+    }
+
+    public void removeProductFromCart(CartItem cartItem){
+        cartRepository.removeProductFromCart(cartItem);
+    }
+
+    public void changeQuantity(CartItem cartItem, int quantity) {
+        cartRepository.changeQuantity(cartItem, quantity);
     }
 }

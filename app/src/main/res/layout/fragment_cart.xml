@@ -14,8 +14,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="match_parent"
@@ -27,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="8dp"
-            android:text="Total: $ 26"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 
         <Button
@@ -36,8 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:padding="16dp"
             android:layout_margin="8dp"
-            android:text="COMPLETE YOUR ORDER"
+            android:layout_marginRight="20dp"
+            android:text="@string/complete_your_order"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.e_shop;
+package com.example.e_shop.threads;
 
 import com.example.e_shop.model.Product;
 import com.google.gson.Gson;

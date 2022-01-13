@@ -1,4 +1,4 @@
-package com.example.e_shop;
+package com.example.e_shop.database;
 
 import com.example.e_shop.model.CartItem;
 import java.util.List;

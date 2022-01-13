@@ -1,10 +1,13 @@
-package com.example.e_shop;
+package com.example.e_shop.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.e_shop.MainActivity;
+import com.example.e_shop.R;
 
 public class SplashScreen extends AppCompatActivity {
 
