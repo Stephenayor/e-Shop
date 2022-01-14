@@ -8,9 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EShop"
-        >
-        <activity android:name=".view.ProductDetailsActivity"></activity>
+        android:theme="@style/Theme.EShop">
+        <activity android:name=".OrderSummaryActivity"></activity>
+        <activity android:name=".view.ProductDetailsActivity" />
         <activity android:name=".view.AddNewProduct" />
         <activity android:name=".view.HomeActivity" />
         <!--
@@ -31,7 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:alwaysRetainTaskState="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +45,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

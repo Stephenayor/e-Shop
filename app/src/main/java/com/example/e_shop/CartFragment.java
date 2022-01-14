@@ -1,5 +1,6 @@
 package com.example.e_shop;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,15 +20,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.e_shop.adapter.CartListAdapter;
 import com.example.e_shop.database.CartDatabase;
 import com.example.e_shop.model.CartItem;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.threads.Executor;
-import com.example.e_shop.view.ProductDetailsActivity;
 import com.example.e_shop.viewmodel.ProductViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -41,13 +39,15 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
     private Product product;
     ProductViewModel productViewModel;
     private Spinner spinner;
-    List<CartItem> cartItemList = new ArrayList<>();
+
     private RecyclerView cartRecyclerView;
     private CartListAdapter adapter;
     public CartItem cartItem;
     public CartDatabase cartDatabase;
     private Button button;
     private int cartProductQuantity;
+    private Button placeOrderButton;
+    private Fragment orderSummaryFragment;
 
     public CartFragment() {
         // Required empty public constructor
@@ -68,8 +68,8 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
         spinner = view.findViewById(R.id.quantity_spinner);
         cartRecyclerView = view.findViewById(R.id.cart_recycler_view);
         button = view.findViewById(R.id.cart_button);
+        placeOrderButton = view.findViewById(R.id.place_order_Button);
         view.setBackgroundColor(Color.WHITE);
-
 
         productViewModel = new ProductViewModel();
         Bundle bundle = this.getArguments();
@@ -94,14 +94,21 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        Snackbar.make(requireView(), cartItem.getProduct().getProductTitle()
-//                + "Added to cart.", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(requireView(), cartItem.getProduct().getProductTitle()
+                + "Added to cart.", Snackbar.LENGTH_LONG).show();
         productViewModel.getCartItem(cartItem).observe(getViewLifecycleOwner(), new Observer<List<CartItem>>() {
             @Override
             public void onChanged(List<CartItem> cartItems) {
                 displayCartList(cartItems);
+                placeOrderButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startOrderSummaryActivity(cartItems);
+                    }
+                });
             }
         });
+
     }
 
     private void displayCartList(List<CartItem> cartItemList) {
@@ -127,10 +134,19 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
                 });
             }
         }).attachToRecyclerView(cartRecyclerView);
+
+    }
+
+    private void startOrderSummaryActivity(List<CartItem> orderCartItem) {
+        ArrayList<CartItem> cartItemList = new ArrayList<CartItem>();
+        cartItemList.addAll(orderCartItem);
+        Intent intent = new Intent(getActivity(), OrderSummaryActivity.class);
+        intent.putParcelableArrayListExtra("orderList", cartItemList);
+        startActivity(intent);
     }
 
     @Override
     public void changeQuantity(CartItem cartItem, int quantity) {
-        productViewModel.changeQuantity(cartItem, quantity);
+
     }
 }

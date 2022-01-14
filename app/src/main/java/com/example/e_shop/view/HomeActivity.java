@@ -5,9 +5,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -15,11 +18,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.e_shop.CartFragment;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.adapter.ProductAdapter;
 import com.example.e_shop.R;
+import com.example.e_shop.ui.login.LoginFragment;
 import com.example.e_shop.viewmodel.ProductItemViewmodel;
 import com.example.e_shop.viewmodel.ProductViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +46,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.It
     private ProductViewModel productViewModel;
     private ProductItemViewmodel productItemViewmodel;
     private Product product;
+    private ImageView cartImageView;
+    private ProgressDialog progressBar;
 
 
     @Override
@@ -48,6 +55,12 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.It
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         recyclerView = findViewById(R.id.product_recyclerView);
+        cartImageView = findViewById(R.id.cart_icon);
+        progressBar = new ProgressDialog(this);
+        progressBar.show();
+        progressBar.setMessage("Products are loading ...");
+        progressBar.setCancelable(true);
+        progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
         productViewModel = new ProductViewModel();
         productViewModel.getProducts().observe(this, new Observer<Product>() {
@@ -56,13 +69,15 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.It
                 productList.add(product);
                 displayProducts();
             }
-        });}
+        });
+    }
 
     private void displayProducts() {
         adapter = new ProductAdapter(getBaseContext(), productList, this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(adapter);
+        progressBar.dismiss();
     }
 
     @Override
@@ -74,26 +89,12 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.It
         startActivity(productDetailsIntent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case action_cart_icon:
-               Fragment cartFragment = new CartFragment();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_activity, cartFragment)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     public void openCartFragment(View view) {
-
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.cart_fragment, CartFragment.class, null)
+                .commit();
     }
 }
+
+

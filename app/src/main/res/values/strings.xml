@@ -34,11 +34,12 @@
     <string name="quantity">Quantity :</string>
     <string name="complete_your_order">COMPLETE YOUR ORDER</string>
     <string name="cart_icon">Cart Icon</string>
+    <string name="order">Order :</string>
     <string-array name="quantity_string_array">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>5(Max)</item>
+        <item>5</item>
     </string-array>
 </resources>
