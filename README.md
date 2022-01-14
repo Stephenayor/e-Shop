@@ -41,6 +41,14 @@ Splash Screen         |
 
 
 
+👨‍🔧 # Architecture
+
+This app uses MVVM (Model View View-Model) architecture.
+![mvvm](https://user-images.githubusercontent.com/40307603/149483056-f357a2eb-ea40-40b5-98fe-1b66609bbfc7.png)
+
+
+
+
 
 
 
