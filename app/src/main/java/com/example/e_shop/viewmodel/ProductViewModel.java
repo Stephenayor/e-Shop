@@ -28,10 +28,6 @@ public class ProductViewModel extends ViewModel {
         return mutableLiveData;
     }
 
-    public LiveData<List<CartItem>> getCart(){
-        return cartRepository.getCart();
-    }
-
     public void addProductToCart(CartItem cartItem){
         cartRepository.addProductToCart(cartItem);
     }
@@ -44,7 +40,7 @@ public class ProductViewModel extends ViewModel {
         cartRepository.removeProductFromCart(cartItem);
     }
 
-    public void changeQuantity(CartItem cartItem, int quantity) {
-        cartRepository.changeQuantity(cartItem, quantity);
+    public LiveData<Double> getTotalPrice(List<CartItem> cartItemList) {
+        return cartRepository.getTotalPrice(cartItemList);
     }
 }

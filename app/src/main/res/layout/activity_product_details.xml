@@ -34,58 +34,53 @@
         android:layout_below="@id/product_details_titleView"
         android:id="@+id/product_details_priceView"/>
 
-    <TextView
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:text="@string/pick_quantity"
-        android:textColor="@color/design_default_color_primary"
-        android:layout_above="@id/quantity_spinner"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"/>
-
-    <Spinner
-        android:id="@+id/quantity_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/quantity_picked_text"
-        android:layout_centerHorizontal="true"
-        android:padding="20dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_alignBaseline="@id/confirm_quantity_button"
-        android:layout_below="@+id/quantity_spinner"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/product_details_priceView"
+        android:layout_centerVertical="true">
 
     <Button
-        android:id="@+id/confirm_quantity_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/quantity_picked_text"
+        android:id="@+id/subtract_button"
+        style="@style/QuantityPickerButtonStyle"
+        android:text="@string/subtract_quantity_text"
+        android:layout_centerVertical="true"
         android:layout_marginTop="30dp"
-        android:layout_marginStart="50dp"
-        android:text="@string/click_to_confirm_quantity_selected"
-        android:textAllCaps="false"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_below="@id/quantity_spinner"
-        />
+        android:layout_marginStart="150dp"/>
+
+    <Button
+        android:id="@+id/quantity_button_text"
+        android:backgroundTint="@color/browser_actions_bg_grey"
+        android:layout_width="50dp"
+        android:textColor="@color/design_default_color_primary"
+        android:text="@string/_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerVertical="true"/>
+
+    <Button
+        android:id="@+id/add_button"
+        style="@style/QuantityPickerButtonStyle"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/add_quantityText" />
+
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="90dp">
 
     <Button
         android:id="@+id/cart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="90dp"
         android:layout_centerHorizontal="true"
         android:text="@string/add_to_cart"
         app:icon="@drawable/ic_baseline_add_shopping_cart_24"
@@ -94,17 +89,6 @@
         android:padding="16dp"
         style="@style/Widget.MaterialComponents.Button.Icon"
         />
+</RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragment_layout">
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </androidx.fragment.app.FragmentContainerView>
-
-</LinearLayout>
 </RelativeLayout>

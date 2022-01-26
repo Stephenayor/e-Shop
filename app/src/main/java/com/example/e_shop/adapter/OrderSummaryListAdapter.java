@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.e_shop.R;
 import com.example.e_shop.model.CartItem;
 import java.util.ArrayList;
-import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,13 +23,12 @@ public class OrderSummaryListAdapter extends RecyclerView.Adapter<OrderSummaryLi
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.cartItemList = cartItemList;
-
     }
 
     @NonNull
     @Override
     public OrderSummaryListAdapter.OrderListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.from(parent.getContext()).inflate(R.layout.ordersummary_list_item, parent,false);
+        View itemView = layoutInflater.from(parent.getContext()).inflate(R.layout.ordersummary_list_item, parent, false);
         return new OrderSummaryListAdapter.OrderListViewHolder(itemView);
     }
 
@@ -40,13 +37,14 @@ public class OrderSummaryListAdapter extends RecyclerView.Adapter<OrderSummaryLi
         Glide.with(context).
                 load(cartItemList.get(position).getProduct().getProductImage()).
                 into(holder.orderImageView);
+        holder.orderTitle.setText(cartItemList.get(position).getProduct().getProductTitle());
+        holder.orderQuantityTextView.setText("(" + cartItemList.get(position).getQuantity() + ")");
     }
 
     @Override
     public int getItemCount() {
         return cartItemList.size();
     }
-
 
     public class OrderListViewHolder extends RecyclerView.ViewHolder {
         private ImageView orderImageView;

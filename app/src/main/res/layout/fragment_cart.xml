@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/cart_fragment"
-    tools:context=".CartFragment">
+    tools:context=".view.CartFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,10 +22,11 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/orderTotalTextView"
+            android:id="@+id/cartTotalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:text="Total:$"
             android:layout_margin="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 

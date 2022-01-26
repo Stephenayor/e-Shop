@@ -4,16 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.e_shop.R;
 import com.example.e_shop.model.CartItem;
-import com.example.e_shop.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
@@ -35,7 +31,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     @NonNull
     @Override
     public CartListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.from(parent.getContext()).inflate(R.layout.cart_list_item, parent,false);
+        View itemView = layoutInflater.from(parent.getContext()).inflate(R.layout.cart_list_item,
+                parent, false);
         return new CartListViewHolder(itemView);
     }
 
@@ -48,30 +45,9 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         holder.cartQuantityTextView.setText(Integer.toString(cartItemList.get(position).getQuantity()));
         int cartQuantity = cartItemList.get(position).getQuantity();
         String testCart = cartItemList.get(position).getProduct().getProductPrice();
-                String str = testCart.substring(1);
-                int cartProductPrice = Integer.parseInt(str);
-                holder.productCartPriceTextView.setText(String.valueOf( "$" + cartProductPrice * cartQuantity));
-
-//        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                int quantity = position;
-////                if (quantity == cartItemList.get(position).getQuantity()) {
-////                    return;
-////                }
-//
-//                String testCart = cartItemList.get(position).getProduct().getProductPrice().toString();
-//                String str = testCart.substring(1);
-//                int cartProductPrice = Integer.parseInt(str);
-//                holder.productCartPriceTextView.setText(String.valueOf(cartProductPrice));
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+        String str = testCart.substring(1);
+        int cartProductPrice = Integer.parseInt(str);
+        holder.productCartPriceTextView.setText(String.valueOf("$" + cartProductPrice * cartQuantity));
     }
 
     @Override
@@ -79,7 +55,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         return cartItemList.size();
     }
 
-    public List<CartItem> getCartItemList(){
+    public List<CartItem> getCartItemList() {
         return cartItemList;
     }
 
@@ -96,7 +72,6 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             productCartImageView = itemView.findViewById(R.id.productImageView);
             productCartTitleTextView = itemView.findViewById(R.id.productTitleTextView);
             productCartQuantityTextView = itemView.findViewById(R.id.quantity_textView);
-            spinner = itemView.findViewById(R.id.quantity_spinner);
             productCartPriceTextView = itemView.findViewById(R.id.cart_item_price_textView);
             cartQuantityTextView = itemView.findViewById(R.id.cartQuantity_text_View);
         }

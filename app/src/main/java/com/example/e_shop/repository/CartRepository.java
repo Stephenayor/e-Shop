@@ -1,12 +1,10 @@
 package com.example.e_shop.repository;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.e_shop.database.CartDatabase;
 import com.example.e_shop.model.CartItem;
 import com.example.e_shop.model.Product;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +17,7 @@ public class CartRepository {
     public CartDatabase cartDatabase;
     Context context;
     private LiveData<List<CartItem>> cartItemListLivedata;
+    private MutableLiveData<Double> mutableTotalCartItemPrice = new MutableLiveData<>();
 
 
     public LiveData<List<CartItem>> getCart() {
@@ -61,5 +60,19 @@ public class CartRepository {
     public void changeQuantity(CartItem cartItem, int quantity) {
         CartItem updatedCartItem = new CartItem(cartItem.getProduct(), quantity);
         addProductToCart(updatedCartItem);
+    }
+
+    public LiveData<Double> getTotalPrice(List<CartItem> cartItemList) {
+        if (mutableTotalCartItemPrice.getValue() == null) {
+            mutableTotalCartItemPrice.setValue(0.0);
+        }
+        double total = 0.0;
+        for (CartItem cartItem: cartItemList) {
+            String cartItemPrice = cartItem.getProduct().getProductPrice();
+            String cartItemPriceString = cartItemPrice.substring(1);
+            total += Integer.parseInt(cartItemPriceString) * cartItem.getQuantity();
+        }
+        mutableTotalCartItemPrice.setValue(total);
+        return mutableTotalCartItemPrice;
     }
 }

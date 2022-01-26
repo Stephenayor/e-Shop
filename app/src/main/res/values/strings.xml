@@ -35,6 +35,9 @@
     <string name="complete_your_order">COMPLETE YOUR ORDER</string>
     <string name="cart_icon">Cart Icon</string>
     <string name="order">Order :</string>
+    <string name="add_quantityText">+</string>
+    <string name="_0">0</string>
+    <string name="subtract_quantity_text">-</string>
     <string-array name="quantity_string_array">
         <item>1</item>
         <item>2</item>

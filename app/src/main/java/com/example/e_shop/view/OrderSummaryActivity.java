@@ -1,4 +1,4 @@
-package com.example.e_shop;
+package com.example.e_shop.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.e_shop.R;
 import com.example.e_shop.adapter.CartListAdapter;
 import com.example.e_shop.adapter.OrderSummaryListAdapter;
 import com.example.e_shop.model.CartItem;

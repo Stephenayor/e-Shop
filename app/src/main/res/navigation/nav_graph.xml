@@ -12,7 +12,7 @@
         tools:layout="@layout/activity_home" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.e_shop.CartFragment"
+        android:name="com.example.e_shop.view.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 </navigation>

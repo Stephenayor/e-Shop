@@ -12,7 +12,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.e_shop.CartFragment;
 import com.example.e_shop.model.Product;
 import com.example.e_shop.R;
 
@@ -26,9 +25,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Fragment cartFragment;
     private int cartProductQuantity;
     public cartButtonClickListener cartButtonClickListener;
-    private Spinner spinner;
-    private TextView productQuantity;
-    private Button quantityConfirmationButton;
+    private Button increaseQuantityButton, reduceQuantityButton, quantityTextButton;
+    private int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +36,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
       productDetailsTitleTextView = findViewById(R.id.product_details_titleView);
       productDetailsPriceTextView = findViewById(R.id.product_details_priceView);
       addToCartButton = findViewById(R.id.cart_button);
-      spinner = findViewById(R.id.quantity_spinner);
-      productQuantity = findViewById(R.id.quantity_picked_text);
-      quantityConfirmationButton = findViewById(R.id.confirm_quantity_button);
+      increaseQuantityButton = findViewById(R.id.add_button);
+      reduceQuantityButton = findViewById(R.id.subtract_button);
+      quantityTextButton = findViewById(R.id.quantity_button_text);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.quantity_string_array, R.layout.support_simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+      
       product = getIntent().getParcelableExtra(EXTRA_PRODUCT);
         createProductDetailsItem(product);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +49,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 addProductsToCartFragment(product);
             }
         });
+
     }
 
     private void createProductDetailsItem(Product product) {
@@ -61,11 +57,27 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .into(productDetailsImageView);
         productDetailsTitleTextView.setText(product.getProductTitle());
         productDetailsPriceTextView.setText(product.getProductPrice());
-        quantityConfirmationButton.setOnClickListener(new View.OnClickListener() {
+//        quantityConfirmationButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                cartProductQuantity = Integer.decode(spinner.getSelectedItem().toString());
+//                productQuantity.setText(String.valueOf(cartProductQuantity));
+//            }
+//        });
+        increaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cartProductQuantity = Integer.decode(spinner.getSelectedItem().toString());
-                productQuantity.setText(String.valueOf(cartProductQuantity));
+                quantity = quantity + 1;
+                quantityTextButton.setText(String.valueOf(quantity));
+                cartProductQuantity = quantity;
+            }
+        });
+        reduceQuantityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantity = quantity - 1;
+                quantityTextButton.setText(String.valueOf(quantity));
+                cartProductQuantity = quantity;
             }
         });
     }
@@ -86,5 +98,4 @@ public class ProductDetailsActivity extends AppCompatActivity {
     public interface cartButtonClickListener{
         void onClickInProductDetailsActivity(View view);
     }
-
 }
