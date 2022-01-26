@@ -57,20 +57,15 @@ public class CartRepository {
         return cartItemListLivedata;
     }
 
-    public void changeQuantity(CartItem cartItem, int quantity) {
-        CartItem updatedCartItem = new CartItem(cartItem.getProduct(), quantity);
-        addProductToCart(updatedCartItem);
-    }
-
     public LiveData<Double> getTotalPrice(List<CartItem> cartItemList) {
         if (mutableTotalCartItemPrice.getValue() == null) {
             mutableTotalCartItemPrice.setValue(0.0);
         }
         double total = 0.0;
-        for (CartItem cartItem: cartItemList) {
+        for (CartItem cartItem : cartItemList) {
             String cartItemPrice = cartItem.getProduct().getProductPrice();
-            String cartItemPriceString = cartItemPrice.substring(1);
-            total += Integer.parseInt(cartItemPriceString) * cartItem.getQuantity();
+            String cartItemPriceSubString = cartItemPrice.substring(1);
+            total += Integer.parseInt(cartItemPriceSubString) * cartItem.getQuantity();
         }
         mutableTotalCartItemPrice.setValue(total);
         return mutableTotalCartItemPrice;

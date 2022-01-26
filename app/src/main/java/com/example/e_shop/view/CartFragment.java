@@ -42,13 +42,11 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
     private static final String EXTRA_PRODUCT_QUANTITY = "productQuantity";
     private Product product;
     ProductViewModel productViewModel;
-    private Spinner spinner;
     ArrayList<CartItem> cartItemList = new ArrayList<CartItem>();
     private RecyclerView cartRecyclerView;
     private CartListAdapter adapter;
     public CartItem cartItem;
     public CartDatabase cartDatabase;
-    private Button button;
     private int cartProductQuantity;
     private Button placeOrderButton;
     private TextView cartItemTotalPriceTextView;
@@ -70,7 +68,6 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         cartRecyclerView = view.findViewById(R.id.cart_recycler_view);
-        button = view.findViewById(R.id.cart_button);
         placeOrderButton = view.findViewById(R.id.place_order_Button);
         cartItemTotalPriceTextView = view.findViewById(R.id.cartTotalTextView);
         view.setBackgroundColor(Color.WHITE);
@@ -134,7 +131,6 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
                                   RecyclerView.ViewHolder target) {
                 return false;
             }
-
             @Override
             public void onSwiped(@NotNull final RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 Executor.getInstance().diskIO().execute(new Runnable() {
@@ -146,7 +142,6 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
                 });
             }
         }).attachToRecyclerView(cartRecyclerView);
-
     }
 
     private void startOrderSummaryActivity(List<CartItem> orderCartItem) {
@@ -158,6 +153,5 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
 
     @Override
     public void changeQuantity(CartItem cartItem, int quantity) {
-
     }
 }

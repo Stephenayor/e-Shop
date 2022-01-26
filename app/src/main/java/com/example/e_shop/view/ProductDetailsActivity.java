@@ -24,7 +24,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button addToCartButton;
     private Fragment cartFragment;
     private int cartProductQuantity;
-    public cartButtonClickListener cartButtonClickListener;
     private Button increaseQuantityButton, reduceQuantityButton, quantityTextButton;
     private int quantity = 0;
 
@@ -57,13 +56,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .into(productDetailsImageView);
         productDetailsTitleTextView.setText(product.getProductTitle());
         productDetailsPriceTextView.setText(product.getProductPrice());
-//        quantityConfirmationButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                cartProductQuantity = Integer.decode(spinner.getSelectedItem().toString());
-//                productQuantity.setText(String.valueOf(cartProductQuantity));
-//            }
-//        });
         increaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,9 +85,5 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
-    }
-
-    public interface cartButtonClickListener{
-        void onClickInProductDetailsActivity(View view);
     }
 }
