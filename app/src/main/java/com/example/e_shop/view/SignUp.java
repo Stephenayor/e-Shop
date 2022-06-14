@@ -78,7 +78,6 @@ public class SignUp extends Fragment {
                                     Toast.makeText(getContext(), "Welcome to e-Shop!", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     updateUI();
-
                                 } else {
                                     Log.w("Authentication", "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(getContext(), "Authentication Failed Check credentials again",
